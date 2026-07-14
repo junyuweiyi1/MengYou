@@ -1,0 +1,6 @@
+<Application x:Class="MengYou.App.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!-- WPF 应用定义：主窗口由 OnStartup 手动创建，因此不设置 StartupUri -->
+    <Application.Resources />
+</Application>

@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- 自动寻路模块（MVP 首个目标） -->
+  <PropertyGroup>
+    <AssemblyName>MengYou.Modules.Path</AssemblyName>
+    <RootNamespace>MengYou.Modules.Path</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MengYou.Abstractions\MengYou.Abstractions.csproj" />
+    <ProjectReference Include="..\MengYou.Core\MengYou.Core.csproj" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- 开发者工具：截图 + 坐标标定 + 模板抠图 -->
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <AssemblyName>MengYou.DevTool</AssemblyName>
+    <RootNamespace>MengYou.DevTool</RootNamespace>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MengYou.Abstractions\MengYou.Abstractions.csproj" />
+    <ProjectReference Include="..\MengYou.Platform.Win32\MengYou.Platform.Win32.csproj" />
+  </ItemGroup>
+</Project>

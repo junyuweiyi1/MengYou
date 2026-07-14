@@ -1,0 +1,53 @@
+{
+  "_comment": "UI 元素坐标：单版本单分辨率固定坐标",
+  "_convention": {
+    "points": "元素中心点 [x, y]",
+    "regions": "元素矩形 [x, y, w, h]",
+    "team_slots": "TeamSlot.<1-5>.HpBar / TeamSlot.<1-5>.Name",
+    "enemy_slots": "EnemySlot.<1-5>.HpBar / EnemySlot.<1-5>.Name",
+    "bag_slots": "BagSlot.<1-N>.Icon / BagSlot.<1-N>.Count / BagSlot.<1-N>.Name"
+  },
+  "points": {
+    "BagButton": [980, 660],
+    "SkillPanel1": [820, 650]
+  },
+  "regions": {
+    "HpNumber": [70, 25, 60, 16],
+    "MaxHpNumber": [135, 25, 60, 16],
+    "MpNumber": [70, 45, 60, 16],
+    "MaxMpNumber": [135, 45, 60, 16],
+    "Level": [200, 25, 40, 16],
+    "MapName": [850, 15, 130, 20],
+    "CoordX": [850, 40, 40, 16],
+    "CoordY": [900, 40, 40, 16],
+    "DialogContent": [200, 400, 600, 120],
+    "MiniMap": [820, 60, 180, 180],
+
+    "TeamSlot.1.HpBar": [10, 90, 120, 6],
+    "TeamSlot.1.Name": [10, 75, 120, 14],
+    "TeamSlot.2.HpBar": [10, 150, 120, 6],
+    "TeamSlot.2.Name": [10, 135, 120, 14],
+    "TeamSlot.3.HpBar": [10, 210, 120, 6],
+    "TeamSlot.3.Name": [10, 195, 120, 14],
+    "TeamSlot.4.HpBar": [10, 270, 120, 6],
+    "TeamSlot.4.Name": [10, 255, 120, 14],
+    "TeamSlot.5.HpBar": [10, 330, 120, 6],
+    "TeamSlot.5.Name": [10, 315, 120, 14],
+
+    "EnemySlot.1.HpBar": [520, 90, 120, 6],
+    "EnemySlot.1.Name": [520, 75, 120, 14],
+    "EnemySlot.2.HpBar": [520, 150, 120, 6],
+    "EnemySlot.2.Name": [520, 135, 120, 14],
+    "EnemySlot.3.HpBar": [520, 210, 120, 6],
+    "EnemySlot.3.Name": [520, 195, 120, 14],
+    "EnemySlot.4.HpBar": [520, 270, 120, 6],
+    "EnemySlot.4.Name": [520, 255, 120, 14],
+    "EnemySlot.5.HpBar": [520, 330, 120, 6],
+    "EnemySlot.5.Name": [520, 315, 120, 14],
+
+    "BagSlot.1.Icon": [720, 400, 36, 36],
+    "BagSlot.1.Count": [744, 424, 16, 12],
+    "BagSlot.2.Icon": [758, 400, 36, 36],
+    "BagSlot.2.Count": [782, 424, 16, 12]
+  }
+}

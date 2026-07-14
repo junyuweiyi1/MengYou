@@ -1,0 +1,26 @@
+# 世界地图图数据示例
+# 格式：maps.<地图ID>.display_name / connections
+# ConnectionType: walk / fly_charm / fly_flag / teleport_npc
+maps:
+  长安:
+    display_name: 长安
+    connections:
+      - to: 傲来
+        type: FlyCharm
+        item: 飞行符
+        cost: 5
+      - to: 长寿村
+        type: Walk
+        cost: 30
+  傲来:
+    display_name: 傲来
+    connections:
+      - to: 长安
+        type: Walk
+        cost: 25
+  长寿村:
+    display_name: 长寿村
+    connections:
+      - to: 长安
+        type: Walk
+        cost: 30

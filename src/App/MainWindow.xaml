@@ -1,0 +1,24 @@
+<Window x:Class="MengYou.App.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="梦游 - 梦幻西游辅助"
+        Height="500" Width="820">
+    <!-- 主窗口：Session 列表 + 挂载 + 操作按钮 -->
+    <DockPanel LastChildFill="True">
+        <ToolBar DockPanel.Dock="Top">
+            <Button Content="刷新窗口列表" Click="OnRefreshWindows" />
+            <Separator />
+            <Button Content="挂载所选窗口" Click="OnAttachWindow" />
+            <Button Content="启动加血" Click="OnStartHeal" />
+            <Button Content="寻路测试" Click="OnRunPath" />
+        </ToolBar>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
+            <ListBox x:Name="WindowsList" Grid.Column="0" DisplayMemberPath="Title" />
+            <ListBox x:Name="SessionsList" Grid.Column="1" DisplayMemberPath="DisplayName" />
+        </Grid>
+    </DockPanel>
+</Window>

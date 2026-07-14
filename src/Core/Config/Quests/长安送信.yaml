@@ -1,0 +1,17 @@
+# 任务脚本示例：长安送信
+name: 长安送信
+steps:
+  - action: goto
+    args:
+      map: 长安
+      target: NPC:李靖
+  - action: talk
+    args:
+      options: [下一页, 接受]
+  - action: goto
+    args:
+      map: 傲来
+      target: NPC:渔夫
+  - action: talk
+    args:
+      options: [交付]

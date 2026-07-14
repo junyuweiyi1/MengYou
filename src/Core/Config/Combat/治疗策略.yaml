@@ -1,0 +1,12 @@
+# 战斗策略示例：治疗
+name: 治疗策略
+rules:
+  - when: "team.Any(u => u.HpPercent < 0.4)"
+    do: "cast_skill('普济众生', team.OrderBy(u => u.HpPercent).First())"
+    priority: 100
+  - when: "self.MpPercent < 0.3"
+    do: "use_item('蓝药')"
+    priority: 90
+  - when: "true"
+    do: "cast_skill('普通攻击', enemies.First())"
+    priority: 1
