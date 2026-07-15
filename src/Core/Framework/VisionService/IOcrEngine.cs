@@ -1,7 +1,4 @@
-using System.Drawing;
-using MengYou.Abstractions.Models;
-
-namespace MengYou.Recognition.Image.Ocr;
+namespace iFramework;
 
 /// <summary>
 /// OCR 引擎抽象：允许后续切换 Tesseract / PaddleOCR 等实现。

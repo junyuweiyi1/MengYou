@@ -1,6 +1,4 @@
 using System.Collections.Concurrent;
-using MengYou.Abstractions;
-using Microsoft.Extensions.Logging;
 
 
 /// <summary>
@@ -16,16 +14,16 @@ public sealed class SessionManager
     private readonly IServiceProvider _rootProvider;
 
     /// <summary>日志。</summary>
-    private readonly ILogger<SessionManager> _logger;
+    private readonly Logger _logger;
 
     /// <summary>前台操作互斥锁：仅前台模式使用。</summary>
     private readonly SemaphoreSlim _foregroundLock = new(1, 1);
 
     /// <summary>构造。</summary>
-    public SessionManager(IServiceProvider rootProvider, ILogger<SessionManager> logger)
+    public SessionManager(IServiceProvider rootProvider)
     {
         _rootProvider = rootProvider;
-        _logger = logger;
+        _logger = new Logger(GetType().Name);
     }
 
     /// <summary>获取所有 Session 快照。</summary>
@@ -36,7 +34,7 @@ public sealed class SessionManager
     {
         var session = new GameSession(config, _rootProvider);
         _sessions[session.SessionId] = session;
-        _logger.LogInformation("SessionManager: 已挂载 {Name}", session.DisplayName);
+        _logger.LogFormat("SessionManager: 已挂载 {0}", session.DisplayName);
         return session;
     }
 

@@ -1,4 +1,4 @@
-namespace MengYou.Abstractions.Events;
+namespace iFramework;
 
 /// <summary>
 /// 所有游戏事件的基类：便于统一订阅与日志。

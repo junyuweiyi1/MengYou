@@ -1,11 +1,4 @@
-using System.Drawing;
-using MengYou.Abstractions;
-using MengYou.Abstractions.Models;
-using MengYou.Platform.Win32;
-using MengYou.Recognition.Image.Matching;
-using MengYou.Recognition.Image.Ocr;
-
-namespace MengYou.Recognition.Image;
+namespace iFramework;
 
 /// <summary>
 /// 视觉服务实现：封装模板匹配、OCR、像素查询。

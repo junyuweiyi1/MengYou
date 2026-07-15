@@ -1,7 +1,4 @@
-using MengYou.Abstractions;
-using MengYou.Abstractions.Models;
-
-namespace MengYou.Recognition.Image.Bag;
+using iFramework;
 
 /// <summary>
 /// 背包读取器：遍历 BagSlot.1..N 格子，识别物品名与数量。
@@ -16,7 +13,7 @@ public sealed class BagPanelReader
     private readonly IVisionService _vision;
 
     /// <summary>UI 布局。</summary>
-    private readonly IUIElementLocator _locator;
+    private readonly IUIElementLocateMgr _locator;
 
     /// <summary>物品名识别所用模板前缀（可选）：如 "ItemIcon.飞行符"。</summary>
     private readonly IReadOnlyList<string> _knownItemNames;
@@ -31,17 +28,17 @@ public sealed class BagPanelReader
     /// <param name="vision">视觉服务。</param>
     /// <param name="locator">UI 布局。</param>
     /// <param name="knownItemNames">已知物品清单（用于图标模板匹配识别）。</param>
-    public BagPanelReader(IVisionService vision, IUIElementLocator locator, IReadOnlyList<string>? knownItemNames = null)
+    public BagPanelReader(IVisionService vision, IUIElementLocateMgr locator, IReadOnlyList<string>? knownItemNames = null)
     {
         _vision = vision;
         _locator = locator;
         _knownItemNames = knownItemNames ?? Array.Empty<string>();
     }
 
-    /// <summary>读取整个背包状态。</summary>
-    public BagState ReadAll()
+    /// <summary>读取整个背包快照。</summary>
+    public BagSnapshot ReadAll()
     {
-        var items = new List<BagItem>();
+        var items = new List<BagItemSnapshot>();
         for (var i = 1; i <= MaxSlots; i++)
         {
             var key = $"BagSlot.{i}";
@@ -54,9 +51,9 @@ public sealed class BagPanelReader
             var countRegion = _locator.LocateRegion($"{key}.Count");
             var count = countRegion != null ? (_vision.ReadNumber(countRegion.Value) ?? 1) : 1;
 
-            items.Add(new BagItem { Name = name, Count = count, SlotIndex = i });
+            items.Add(new BagItemSnapshot { Name = name, Count = count, SlotIndex = i });
         }
-        return new BagState { Items = items };
+        return new BagSnapshot { Items = items };
     }
 
     /// <summary>判定格子是否有物品：采样中心 3x3 像素，只要有一个不接近背景色即认为有物品。</summary>

@@ -1,11 +1,4 @@
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.Runtime.InteropServices;
-using MengYou.Abstractions.Models;
-using OpenCvSharp;
-using OpenCvSharp.Extensions;
-
-namespace MengYou.Recognition.Image.Matching;
+namespace iFramework;
 
 /// <summary>
 /// 模板匹配器：基于 OpenCV NCC（归一化互相关）算法。

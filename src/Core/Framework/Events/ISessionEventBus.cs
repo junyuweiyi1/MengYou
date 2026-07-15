@@ -1,6 +1,4 @@
-using MengYou.Abstractions.Events;
-
-namespace MengYou.Abstractions;
+namespace iFramework;
 
 /// <summary>
 /// 会话级事件总线：每个 GameSession 一个实例，避免多开互相干扰。

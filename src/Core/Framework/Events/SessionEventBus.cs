@@ -1,8 +1,4 @@
-using System.Collections.Concurrent;
-using MengYou.Abstractions;
-using MengYou.Abstractions.Events;
-
-namespace MengYou.Core.Events;
+namespace iFramework;
 
 /// <summary>
 /// 会话级事件总线实现：内存分发，按事件类型订阅。

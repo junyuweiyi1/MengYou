@@ -1,6 +1,4 @@
-using MengYou.Abstractions.Models;
-
-namespace MengYou.Abstractions;
+namespace iFramework;
 
 /// <summary>
 /// 视觉门面：模板匹配 + OCR + 像素查询统一入口。

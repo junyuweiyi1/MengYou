@@ -1,25 +1,33 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Administrator\\Desktop\\\u68A6\u6E38\\src\\Core\\Core\\",
+  "WorkspaceRootPath": "C:\\Users\\Administrator\\Desktop\\\u68A6\u6E38\\src\\Core\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{66CFEA4E-A552-4632-A40B-2A6A843C1853}|Core.csproj|c:\\users\\administrator\\desktop\\\u68A6\u6E38\\src\\core\\core\\core1\\coreservicecollectionextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{66CFEA4E-A552-4632-A40B-2A6A843C1853}|Core.csproj|solutionrelative:core1\\coreservicecollectionextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{66CFEA4E-A552-4632-A40B-2A6A843C1853}|Core.csproj|c:\\users\\administrator\\desktop\\\u68A6\u6E38\\src\\core\\gamemain\\sessiondata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{66CFEA4E-A552-4632-A40B-2A6A843C1853}|Core.csproj|solutionrelative:gamemain\\sessiondata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{66CFEA4E-A552-4632-A40B-2A6A843C1853}|Core.csproj|c:\\users\\administrator\\desktop\\\u68A6\u6E38\\src\\core\\core\\framework\\input\\simulatedinputservicecollectionextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{66CFEA4E-A552-4632-A40B-2A6A843C1853}|Core.csproj|solutionrelative:framework\\input\\simulatedinputservicecollectionextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{66CFEA4E-A552-4632-A40B-2A6A843C1853}|Core.csproj|c:\\users\\administrator\\desktop\\\u68A6\u6E38\\src\\core\\gamemain\\sessions\\gamesession.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{66CFEA4E-A552-4632-A40B-2A6A843C1853}|Core.csproj|solutionrelative:gamemain\\sessions\\gamesession.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{66CFEA4E-A552-4632-A40B-2A6A843C1853}|Core.csproj|c:\\users\\administrator\\desktop\\\u68A6\u6E38\\src\\core\\core\\gamemain\\gamereader\\imagegamereader\\imagerecognitionservicecollectionextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{66CFEA4E-A552-4632-A40B-2A6A843C1853}|Core.csproj|c:\\users\\administrator\\desktop\\\u68A6\u6E38\\src\\core\\gamemain\\igamesession.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{66CFEA4E-A552-4632-A40B-2A6A843C1853}|Core.csproj|solutionrelative:gamemain\\igamesession.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{66CFEA4E-A552-4632-A40B-2A6A843C1853}|Core.csproj|c:\\users\\administrator\\desktop\\\u68A6\u6E38\\src\\core\\gamemain\\sessions\\sessionmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{66CFEA4E-A552-4632-A40B-2A6A843C1853}|Core.csproj|solutionrelative:gamemain\\sessions\\sessionmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{66CFEA4E-A552-4632-A40B-2A6A843C1853}|Core.csproj|c:\\users\\administrator\\desktop\\\u68A6\u6E38\\src\\core\\gamemain\\gamereader\\imagegamereader\\imagerecognitionservicecollectionextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{66CFEA4E-A552-4632-A40B-2A6A843C1853}|Core.csproj|solutionrelative:gamemain\\gamereader\\imagegamereader\\imagerecognitionservicecollectionextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{66CFEA4E-A552-4632-A40B-2A6A843C1853}|Core.csproj|c:\\users\\administrator\\desktop\\\u68A6\u6E38\\src\\core\\core\\framework\\events\\isessioneventbus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{66CFEA4E-A552-4632-A40B-2A6A843C1853}|Core.csproj|c:\\users\\administrator\\desktop\\\u68A6\u6E38\\src\\core\\framework\\events\\isessioneventbus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{66CFEA4E-A552-4632-A40B-2A6A843C1853}|Core.csproj|solutionrelative:framework\\events\\isessioneventbus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{66CFEA4E-A552-4632-A40B-2A6A843C1853}|Core.csproj|c:\\users\\administrator\\desktop\\\u68A6\u6E38\\src\\core\\core\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{66CFEA4E-A552-4632-A40B-2A6A843C1853}|Core.csproj|c:\\users\\administrator\\desktop\\\u68A6\u6E38\\src\\core\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{66CFEA4E-A552-4632-A40B-2A6A843C1853}|Core.csproj|solutionrelative:class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -30,67 +38,91 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "SimulatedInputServiceCollectionExtensions.cs",
-              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\\u68A6\u6E38\\src\\Core\\Core\\Framework\\Input\\SimulatedInputServiceCollectionExtensions.cs",
-              "RelativeDocumentMoniker": "Framework\\Input\\SimulatedInputServiceCollectionExtensions.cs",
-              "ToolTip": "C:\\Users\\Administrator\\Desktop\\\u68A6\u6E38\\src\\Core\\Core\\Framework\\Input\\SimulatedInputServiceCollectionExtensions.cs",
-              "RelativeToolTip": "Framework\\Input\\SimulatedInputServiceCollectionExtensions.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-14T08:35:36.405Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ImageRecognitionServiceCollectionExtensions.cs",
-              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\\u68A6\u6E38\\src\\Core\\Core\\GameMain\\GameReader\\ImageGameReader\\ImageRecognitionServiceCollectionExtensions.cs",
-              "RelativeDocumentMoniker": "GameMain\\GameReader\\ImageGameReader\\ImageRecognitionServiceCollectionExtensions.cs",
-              "ToolTip": "C:\\Users\\Administrator\\Desktop\\\u68A6\u6E38\\src\\Core\\Core\\GameMain\\GameReader\\ImageGameReader\\ImageRecognitionServiceCollectionExtensions.cs",
-              "RelativeToolTip": "GameMain\\GameReader\\ImageGameReader\\ImageRecognitionServiceCollectionExtensions.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-14T08:35:32.789Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "CoreServiceCollectionExtensions.cs",
-              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\\u68A6\u6E38\\src\\Core\\Core\\Core1\\CoreServiceCollectionExtensions.cs",
-              "RelativeDocumentMoniker": "Core1\\CoreServiceCollectionExtensions.cs",
-              "ToolTip": "C:\\Users\\Administrator\\Desktop\\\u68A6\u6E38\\src\\Core\\Core\\Core1\\CoreServiceCollectionExtensions.cs",
-              "RelativeToolTip": "Core1\\CoreServiceCollectionExtensions.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
+              "Title": "SessionData.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\\u68A6\u6E38\\src\\Core\\GameMain\\SessionData.cs",
+              "RelativeDocumentMoniker": "GameMain\\SessionData.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Desktop\\\u68A6\u6E38\\src\\Core\\GameMain\\SessionData.cs",
+              "RelativeToolTip": "GameMain\\SessionData.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-14T08:34:43.344Z",
+              "WhenOpened": "2026-07-14T10:32:22.066Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GameSession.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\\u68A6\u6E38\\src\\Core\\GameMain\\Sessions\\GameSession.cs",
+              "RelativeDocumentMoniker": "GameMain\\Sessions\\GameSession.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Desktop\\\u68A6\u6E38\\src\\Core\\GameMain\\Sessions\\GameSession.cs",
+              "RelativeToolTip": "GameMain\\Sessions\\GameSession.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T10:31:42.842Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "ISessionEventBus.cs",
-              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\\u68A6\u6E38\\src\\Core\\Core\\Framework\\Events\\ISessionEventBus.cs",
-              "RelativeDocumentMoniker": "Framework\\Events\\ISessionEventBus.cs",
-              "ToolTip": "C:\\Users\\Administrator\\Desktop\\\u68A6\u6E38\\src\\Core\\Core\\Framework\\Events\\ISessionEventBus.cs",
-              "RelativeToolTip": "Framework\\Events\\ISessionEventBus.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAhAAAAAAAAAA==",
+              "Title": "SessionManager.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\\u68A6\u6E38\\src\\Core\\GameMain\\Sessions\\SessionManager.cs",
+              "RelativeDocumentMoniker": "GameMain\\Sessions\\SessionManager.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Desktop\\\u68A6\u6E38\\src\\Core\\GameMain\\Sessions\\SessionManager.cs",
+              "RelativeToolTip": "GameMain\\Sessions\\SessionManager.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAADwvyQAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-14T08:32:44.216Z",
+              "WhenOpened": "2026-07-14T10:31:26.078Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "IGameSession.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\\u68A6\u6E38\\src\\Core\\GameMain\\IGameSession.cs",
+              "RelativeDocumentMoniker": "GameMain\\IGameSession.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Desktop\\\u68A6\u6E38\\src\\Core\\GameMain\\IGameSession.cs",
+              "RelativeToolTip": "GameMain\\IGameSession.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T10:02:01.597Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
+              "Title": "ImageRecognitionServiceCollectionExtensions.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\\u68A6\u6E38\\src\\Core\\GameMain\\GameReader\\ImageGameReader\\ImageRecognitionServiceCollectionExtensions.cs",
+              "RelativeDocumentMoniker": "GameMain\\GameReader\\ImageGameReader\\ImageRecognitionServiceCollectionExtensions.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Desktop\\\u68A6\u6E38\\src\\Core\\GameMain\\GameReader\\ImageGameReader\\ImageRecognitionServiceCollectionExtensions.cs",
+              "RelativeToolTip": "GameMain\\GameReader\\ImageGameReader\\ImageRecognitionServiceCollectionExtensions.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T08:35:32.789Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ISessionEventBus.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\\u68A6\u6E38\\src\\Core\\Framework\\Events\\ISessionEventBus.cs",
+              "RelativeDocumentMoniker": "Framework\\Events\\ISessionEventBus.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Desktop\\\u68A6\u6E38\\src\\Core\\Framework\\Events\\ISessionEventBus.cs",
+              "RelativeToolTip": "Framework\\Events\\ISessionEventBus.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T08:32:44.216Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "Class1.cs",
-              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\\u68A6\u6E38\\src\\Core\\Core\\Class1.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\\u68A6\u6E38\\src\\Core\\Class1.cs",
               "RelativeDocumentMoniker": "Class1.cs",
-              "ToolTip": "C:\\Users\\Administrator\\Desktop\\\u68A6\u6E38\\src\\Core\\Core\\Class1.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Desktop\\\u68A6\u6E38\\src\\Core\\Class1.cs",
               "RelativeToolTip": "Class1.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAADwvwIAAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
