@@ -4,7 +4,7 @@ namespace iFramework;
 /// 视觉服务实现：封装模板匹配、OCR、像素查询。
 /// 内部维护"当前帧"截图缓存，Refresh() 刷新。
 /// </summary>
-public sealed class VisionService : IVisionService, IDisposable
+public sealed class VisionService : IVisionServiceMgr, IDisposable
 {
     /// <summary>关联窗口句柄。</summary>
     private readonly IntPtr _hWnd;
@@ -50,11 +50,11 @@ public sealed class VisionService : IVisionService, IDisposable
     }
 
     /// <inheritdoc/>
-    public Point2D? FindTemplate(string templateKey, double threshold = 0.85)
+    public Vector2? FindTemplate(string templateKey, double threshold = 0.85)
         => _matcher.FindOne(Current(), templateKey, threshold);
 
     /// <inheritdoc/>
-    public IReadOnlyList<Point2D> FindTemplateAll(string templateKey, double threshold = 0.85)
+    public IReadOnlyList<Vector2> FindTemplateAll(string templateKey, double threshold = 0.85)
         => _matcher.FindAll(Current(), templateKey, threshold);
 
     /// <inheritdoc/>
@@ -73,7 +73,7 @@ public sealed class VisionService : IVisionService, IDisposable
     }
 
     /// <inheritdoc/>
-    public int GetPixel(Point2D point)
+    public int GetPixel(Vector2 point)
     {
         var frame = Current();
         if (point.X < 0 || point.Y < 0 || point.X >= frame.Width || point.Y >= frame.Height) return 0;

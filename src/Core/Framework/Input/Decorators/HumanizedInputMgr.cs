@@ -33,7 +33,7 @@ public sealed class HumanizedInputMgr : IInputMgr
     public InputMode Mode => _inner.Mode;
 
     /// <inheritdoc/>
-    public async Task ClickAsync(Point2D point, MouseButton button = MouseButton.Left, CancellationToken ct = default)
+    public async Task ClickAsync(Vector2 point, MouseButton button = MouseButton.Left, CancellationToken ct = default)
     {
         await HumanDelay(ct);
         // 坐标微抖动：±2 像素
@@ -42,14 +42,14 @@ public sealed class HumanizedInputMgr : IInputMgr
     }
 
     /// <inheritdoc/>
-    public async Task MoveAsync(Point2D point, CancellationToken ct = default)
+    public async Task MoveAsync(Vector2 point, CancellationToken ct = default)
     {
         await HumanDelay(ct);
         await _inner.MoveAsync(point, ct);
     }
 
     /// <inheritdoc/>
-    public async Task DragAsync(Point2D from, Point2D to, CancellationToken ct = default)
+    public async Task DragAsync(Vector2 from, Vector2 to, CancellationToken ct = default)
     {
         await HumanDelay(ct);
         await _inner.DragAsync(from, to, ct);

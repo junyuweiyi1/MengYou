@@ -5,5 +5,5 @@
 public interface IGameControl
 {
     /// <summary>使用背包道具。</summary>
-    Task<BagSnapshot> UseBagItem(string itemName, int bagIndex, int slotIndex, int useCount);
+    void UseBagItem(BagType bagType, int bagIndex, int slotIndex, int useCount);
 }

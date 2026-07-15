@@ -1,3 +1,5 @@
+using Core.GameMain.Game.UI;
+
 namespace iFramework;
 
 /// <summary>鼠标按钮枚举。</summary>
@@ -43,14 +45,16 @@ public interface IInputMgr
     /// <summary>当前操作模式。</summary>
     InputMode Mode { get; }
 
+    void Initialize(IUIMgr windowMgr);
+
     /// <summary>点击屏幕坐标（客户端坐标系）。</summary>
-    Task ClickAsync(Point2D point, MouseButton button = MouseButton.Left, CancellationToken ct = default);
+    Task ClickAsync(Vector2 point, MouseButton button = MouseButton.Left, CancellationToken ct = default);
 
     /// <summary>鼠标移动到屏幕坐标。</summary>
-    Task MoveAsync(Point2D point, CancellationToken ct = default);
+    Task MoveAsync(Vector2 point, CancellationToken ct = default);
 
     /// <summary>拖拽。</summary>
-    Task DragAsync(Point2D from, Point2D to, CancellationToken ct = default);
+    Task DragAsync(Vector2 from, Vector2 to, CancellationToken ct = default);
 
     /// <summary>按下并释放某个键。</summary>
     Task SendKeyAsync(int virtualKeyCode, KeyModifiers modifiers = KeyModifiers.None, CancellationToken ct = default);

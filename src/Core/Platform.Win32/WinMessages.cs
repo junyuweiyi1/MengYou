@@ -1,5 +1,3 @@
-namespace MengYou.Platform.Win32;
-
 /// <summary>
 /// Windows 消息常量：模拟点击/键盘用。
 /// </summary>

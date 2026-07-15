@@ -8,7 +8,7 @@ using iFramework;
 public sealed class ImageGameReader : IGameReader
 {
     /// <summary>视觉服务。</summary>
-    private readonly IVisionService _vision;
+    private readonly IVisionServiceMgr _vision;
 
     /// <summary>UI 定位器。</summary>
     private readonly IUIElementLocateMgr _locator;
@@ -16,15 +16,12 @@ public sealed class ImageGameReader : IGameReader
     /// <summary>背包读取。</summary>
     private readonly BagPanelReader _bag;
 
-    /// <summary>构造。</summary>
-    public ImageGameReader(
-        IVisionService vision,
-        IUIElementLocator locator,
-        BagPanelReader bag)
+    public ImageGameReader(Game game)
     {
-        _vision = vision;
-        _locator = locator;
-        _bag = bag;
+        _vision = game.VisionServiceMgr;
+        _locator = game.UIElementLocateMgr;
+
+        _bag = new BagPanelReader(vision, locator);
     }
 
     /// <inheritdoc/>

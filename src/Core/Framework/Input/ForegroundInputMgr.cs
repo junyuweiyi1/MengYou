@@ -1,3 +1,5 @@
+using Core.GameMain.Game.UI;
+
 namespace iFramework;
 
 /// <summary>
@@ -7,19 +9,18 @@ namespace iFramework;
 public sealed class ForegroundInputMgr : IInputMgr
 {
     /// <summary>目标窗口句柄（用于坐标转换与前台切换）。</summary>
-    private readonly IntPtr _hWnd;
-
-    /// <summary>构造。</summary>
-    public ForegroundInputMgr(IntPtr hWnd)
-    {
-        _hWnd = hWnd;
-    }
+    private IUIMgr _windowMgr;
 
     /// <inheritdoc/>
     public InputMode Mode => InputMode.Foreground;
 
+    public void Initialize(IUIMgr windowMgr)
+    {
+        _windowMgr = windowMgr;
+    }
+
     /// <inheritdoc/>
-    public Task ClickAsync(Point2D point, MouseButton button = MouseButton.Left, CancellationToken ct = default)
+    public Task ClickAsync(Vector2 point, MouseButton button = MouseButton.Left, CancellationToken ct = default)
     {
         EnsureForeground();
         var screen = ClientToScreen(point);
@@ -35,15 +36,16 @@ public sealed class ForegroundInputMgr : IInputMgr
     }
 
     /// <inheritdoc/>
-    public Task MoveAsync(Point2D point, CancellationToken ct = default)
+    public Task MoveAsync(Vector2 point, CancellationToken ct = default)
     {
         EnsureForeground();
-        MoveCursorAbsolute(ClientToScreen(point));
+        var screen = ClientToScreen(point);
+        MoveCursorAbsolute(screen);
         return Task.CompletedTask;
     }
 
     /// <inheritdoc/>
-    public async Task DragAsync(Point2D from, Point2D to, CancellationToken ct = default)
+    public async Task DragAsync(Vector2 from, Vector2 to, CancellationToken ct = default)
     {
         EnsureForeground();
         MoveCursorAbsolute(ClientToScreen(from));
@@ -93,22 +95,22 @@ public sealed class ForegroundInputMgr : IInputMgr
     /// <summary>确保目标窗口在前台。</summary>
     private void EnsureForeground()
     {
-        if (User32.GetForegroundWindow() != _hWnd)
+        if (!_windowMgr.IsWindowForground)
         {
-            User32.SetForegroundWindow(_hWnd);
+            _windowMgr.ForgroundWindow();
         }
     }
 
     /// <summary>客户端坐标转屏幕坐标。</summary>
-    private Point2D ClientToScreen(Point2D p)
+    private Vector2 ClientToScreen(Vector2 p)
     {
         var pt = new User32.Point { X = p.X, Y = p.Y };
-        User32.ClientToScreen(_hWnd, ref pt);
+        User32.ClientToScreen(_windowMgr.HWnd, ref pt);
         return new Point2D(pt.X, pt.Y);
     }
 
     /// <summary>移动光标到绝对屏幕坐标（SendInput 的 ABSOLUTE 需 0~65535）。</summary>
-    private static void MoveCursorAbsolute(Point2D screenPoint)
+    private static void MoveCursorAbsolute(Vector2 screenPoint)
     {
         var screen = System.Windows.Forms.Screen.PrimaryScreen!.Bounds;
         var normX = (int)(screenPoint.X * 65535.0 / screen.Width);

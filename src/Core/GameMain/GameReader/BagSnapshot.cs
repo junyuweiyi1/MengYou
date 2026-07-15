@@ -3,6 +3,8 @@
 /// </summary>
 public sealed class BagItemSnapshot
 {
+    public BagType BagType { get; init; }
+
     /// <summary>物品名。</summary>
     public string Name { get; init; } = string.Empty;
 

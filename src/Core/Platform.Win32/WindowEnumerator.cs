@@ -1,7 +1,6 @@
 using System.Text;
 using MengYou.Platform.Win32.Native;
 
-namespace MengYou.Platform.Win32;
 
 /// <summary>
 /// 游戏窗口信息。

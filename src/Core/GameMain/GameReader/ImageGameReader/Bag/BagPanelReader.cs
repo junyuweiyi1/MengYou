@@ -10,7 +10,7 @@ using iFramework;
 public sealed class BagPanelReader
 {
     /// <summary>视觉。</summary>
-    private readonly IVisionService _vision;
+    private readonly IVisionServiceMgr _vision;
 
     /// <summary>UI 布局。</summary>
     private readonly IUIElementLocateMgr _locator;
@@ -28,7 +28,7 @@ public sealed class BagPanelReader
     /// <param name="vision">视觉服务。</param>
     /// <param name="locator">UI 布局。</param>
     /// <param name="knownItemNames">已知物品清单（用于图标模板匹配识别）。</param>
-    public BagPanelReader(IVisionService vision, IUIElementLocateMgr locator, IReadOnlyList<string>? knownItemNames = null)
+    public BagPanelReader(IVisionServiceMgr vision, IUIElementLocateMgr locator, IReadOnlyList<string>? knownItemNames = null)
     {
         _vision = vision;
         _locator = locator;

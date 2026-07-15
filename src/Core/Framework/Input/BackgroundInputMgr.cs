@@ -19,7 +19,7 @@ public sealed class BackgroundInputMgr : IInputMgr
     public InputMode Mode => InputMode.Background;
 
     /// <inheritdoc/>
-    public Task ClickAsync(Point2D point, MouseButton button = MouseButton.Left, CancellationToken ct = default)
+    public Task ClickAsync(Vector2 point, MouseButton button = MouseButton.Left, CancellationToken ct = default)
     {
         var lParam = WinMessages.MakeLParam(point.X, point.Y);
         (uint down, uint up) = button switch
@@ -35,14 +35,14 @@ public sealed class BackgroundInputMgr : IInputMgr
     }
 
     /// <inheritdoc/>
-    public Task MoveAsync(Point2D point, CancellationToken ct = default)
+    public Task MoveAsync(Vector2 point, CancellationToken ct = default)
     {
         User32.PostMessage(_hWnd, WinMessages.WM_MOUSEMOVE, IntPtr.Zero, WinMessages.MakeLParam(point.X, point.Y));
         return Task.CompletedTask;
     }
 
     /// <inheritdoc/>
-    public async Task DragAsync(Point2D from, Point2D to, CancellationToken ct = default)
+    public async Task DragAsync(Vector2 from, Vector2 to, CancellationToken ct = default)
     {
         // 后台拖拽：按下 → 中间移动多次 → 抬起
         User32.PostMessage(_hWnd, WinMessages.WM_LBUTTONDOWN, (IntPtr)0x0001, WinMessages.MakeLParam(from.X, from.Y));

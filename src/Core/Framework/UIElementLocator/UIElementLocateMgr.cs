@@ -7,24 +7,17 @@ namespace iFramework;
 public sealed class UIElementLocateMgr : IUIElementLocateMgr
 {
     /// <summary>元素→坐标映射。</summary>
-    private readonly Dictionary<string, Point2D> _points;
+    private readonly Dictionary<string, Vector2> _points;
 
     /// <summary>元素→区域映射。</summary>
     private readonly Dictionary<string, Rect> _regions;
 
-    /// <summary>构造。</summary>
-    private UIElementLocateMgr(Dictionary<string, Point2D> points, Dictionary<string, Rect> regions)
-    {
-        _points = points;
-        _regions = regions;
-    }
 
-    /// <summary>从 JSON 文件加载布局。</summary>
-    public static UIElementLocateMgr LoadFromFile(string path)
+    public void Initialize(string path)
     {
         var json = File.ReadAllText(path);
         var doc = JsonDocument.Parse(json);
-        var points = new Dictionary<string, Point2D>(StringComparer.OrdinalIgnoreCase);
+        var points = new Dictionary<string, Vector2>(StringComparer.OrdinalIgnoreCase);
         var regions = new Dictionary<string, Rect>(StringComparer.OrdinalIgnoreCase);
 
         if (doc.RootElement.TryGetProperty("points", out var pts))
@@ -43,11 +36,13 @@ public sealed class UIElementLocateMgr : IUIElementLocateMgr
                 regions[kv.Name] = new Rect(arr[0].GetInt32(), arr[1].GetInt32(), arr[2].GetInt32(), arr[3].GetInt32());
             }
         }
-        return new UIElementLocateMgr(points, regions);
+
+        _points = points;
+        _regions = regions;
     }
 
     /// <inheritdoc/>
-    public Point2D? Locate(string elementKey)
+    public Vector2? Locate(string elementKey)
         => _points.TryGetValue(elementKey, out var p) ? p : null;
 
     /// <inheritdoc/>

@@ -3,12 +3,20 @@
 /// </summary>
 /// <param name="X">横坐标。</param>
 /// <param name="Y">纵坐标。</param>
-public struct Point2D(int X, int Y)
+public struct Vector2
 {
-    /// <summary>零点常量。</summary>
-    public static readonly Point2D Zero = new(0, 0);
+    public int X;
+    public int Y;
 
-    /// <summary>转为字符串用于日志显示。</summary>
+    public Vector2(int x, int y)
+    {
+        this.X = x;
+        this.Y = y;
+    }
+
+
+    public static readonly Vector2 Zero = new(0, 0);
+
     public override string ToString() => $"({X},{Y})";
 }
 
@@ -19,8 +27,21 @@ public struct Point2D(int X, int Y)
 /// <param name="Y">左上角纵坐标。</param>
 /// <param name="Width">宽度。</param>
 /// <param name="Height">高度。</param>
-public struct Rect(int X, int Y, int Width, int Height)
+public struct Rect
 {
+    public int X;
+    public int Y;
+    public int Width;
+    public int Height;
+
+    public Rect(int X, int Y, int Width, int Height)
+    {
+        this.X = X;
+        this.Y = Y;
+        this.Width = Width;
+        this.Height = Height;
+    }
+
     /// <summary>获取中心点。</summary>
-    public Point2D Center => new(X + Width / 2, Y + Height / 2);
+    public Vector2 Center => new(X + Width / 2, Y + Height / 2);
 }

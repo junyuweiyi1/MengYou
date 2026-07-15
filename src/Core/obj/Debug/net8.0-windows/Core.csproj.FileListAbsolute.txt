@@ -1,0 +1,11 @@
+F:\UnityProjects\MengYou\src\Core\obj\Debug\net8.0-windows\DevTool\App.baml
+F:\UnityProjects\MengYou\src\Core\obj\Debug\net8.0-windows\DevTool\MainWindow.baml
+F:\UnityProjects\MengYou\src\Core\obj\Debug\net8.0-windows\DevTool\App.g.cs
+F:\UnityProjects\MengYou\src\Core\obj\Debug\net8.0-windows\DevTool\MainWindow.g.cs
+F:\UnityProjects\MengYou\src\Core\obj\Debug\net8.0-windows\Core_MarkupCompile.cache
+F:\UnityProjects\MengYou\src\Core\obj\Debug\net8.0-windows\Core.g.resources
+F:\UnityProjects\MengYou\src\Core\obj\Debug\net8.0-windows\Core.GeneratedMSBuildEditorConfig.editorconfig
+F:\UnityProjects\MengYou\src\Core\obj\Debug\net8.0-windows\Core.AssemblyInfoInputs.cache
+F:\UnityProjects\MengYou\src\Core\obj\Debug\net8.0-windows\Core.AssemblyInfo.cs
+F:\UnityProjects\MengYou\src\Core\obj\Debug\net8.0-windows\Core.csproj.CoreCompileInputs.cache
+F:\UnityProjects\MengYou\src\Core\obj\Debug\net8.0-windows\Core.sourcelink.json

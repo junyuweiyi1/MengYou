@@ -33,7 +33,7 @@ public sealed class TemplateMatcher
     /// <param name="source">当前截图。</param>
     /// <param name="key">模板键。</param>
     /// <param name="threshold">相似度阈值 0~1。</param>
-    public Point2D? FindOne(Bitmap source, string key, double threshold = 0.85)
+    public Vector2? FindOne(Bitmap source, string key, double threshold = 0.85)
     {
         using var src = BitmapConverter.ToMat(source);
         var tmpl = GetTemplate(key);
@@ -45,13 +45,13 @@ public sealed class TemplateMatcher
     }
 
     /// <summary>查找模板全部出现位置。</summary>
-    public IReadOnlyList<Point2D> FindAll(Bitmap source, string key, double threshold = 0.85)
+    public IReadOnlyList<Vector2> FindAll(Bitmap source, string key, double threshold = 0.85)
     {
         using var src = BitmapConverter.ToMat(source);
         var tmpl = GetTemplate(key);
         using var result = new Mat();
         Cv2.MatchTemplate(src, tmpl, result, TemplateMatchModes.CCoeffNormed);
-        var points = new List<Point2D>();
+        var points = new List<Vector2>();
         // 简单非极大值抑制：遍历超过阈值的点，抑制附近区域
         var w = tmpl.Width;
         var h = tmpl.Height;
