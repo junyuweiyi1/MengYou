@@ -12,13 +12,14 @@ public sealed class GameSession : IGameSession
     /// <summary>创建会话。</summary>
     /// <param name="data">会话数据。</param>
     /// <param name="rootProvider">根 DI 容器，用于创建 Scope。</param>
-    public GameSession(SessionData data, IServiceProvider rootProvider)
+    public GameSession(SessionData data)
     {
         _logger = new Logger(GetType().Name);
         SessionId = Guid.NewGuid();
         WindowHandle = data.WindowHandle;
         ProcessId = data.ProcessId;
         DisplayName = data.DisplayName;
+        Game = new Game(WindowHandle, data.InputMode);
 
         _logger.LogFormat("Session {0} 已创建：{1} (HWND={2})", SessionId, DisplayName, WindowHandle);
     }
@@ -38,13 +39,15 @@ public sealed class GameSession : IGameSession
     /// <inheritdoc/>
     public SessionState State { get; private set; } = SessionState.Idle;
 
+    public Game Game { get; }
+
 
     /// <inheritdoc/>
     public Task StartAsync(CancellationToken ct = default)
     {
         if (State == SessionState.Running) return Task.CompletedTask;
         State = SessionState.Running;
-        _logger.LogInformation("Session {Id} 已启动", SessionId);
+        _logger.LogFormat("Session {0} 已启动", SessionId);
         return Task.CompletedTask;
     }
 
@@ -54,7 +57,7 @@ public sealed class GameSession : IGameSession
         if (State == SessionState.Stopped) return Task.CompletedTask;
         _cts.Cancel();
         State = SessionState.Stopped;
-        _logger.LogInformation("Session {Id} 已停止", SessionId);
+        _logger.LogFormat("Session {0} 已停止", SessionId);
         return Task.CompletedTask;
     }
 
@@ -62,6 +65,6 @@ public sealed class GameSession : IGameSession
     public void Dispose()
     {
         _cts.Dispose();
-        _scope.Dispose();
+        Game.Dispose();
     }
 }

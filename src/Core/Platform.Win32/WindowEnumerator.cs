@@ -1,5 +1,4 @@
 using System.Text;
-using MengYou.Platform.Win32.Native;
 
 
 /// <summary>
@@ -18,6 +17,14 @@ public sealed class GameWindow
 
     /// <summary>进程名。</summary>
     public string ProcessName { get; init; } = string.Empty;
+
+    /// <summary>窗口类名。</summary>
+    public string ClassName { get; init; } = string.Empty;
+
+    /// <summary>父窗口句柄。</summary>
+    public IntPtr ParentHandle { get; init; }
+
+    public override string ToString() => $"{Title} [{ProcessName}] 0x{Handle.ToInt64():X}";
 }
 
 /// <summary>
@@ -42,12 +49,16 @@ public static class WindowEnumerator
             User32.GetWindowThreadProcessId(hWnd, out var pid);
             var procName = string.Empty;
             try { procName = System.Diagnostics.Process.GetProcessById((int)pid).ProcessName; } catch { }
+            var classSb = new StringBuilder(256);
+            User32.GetClassName(hWnd, classSb, classSb.Capacity);
             list.Add(new GameWindow
             {
                 Handle = hWnd,
                 Title = title,
                 ProcessId = (int)pid,
                 ProcessName = procName,
+                ClassName = classSb.ToString(),
+                ParentHandle = User32.GetParent(hWnd),
             });
             return true;
         }, IntPtr.Zero);

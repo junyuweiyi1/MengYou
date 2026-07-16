@@ -3,31 +3,33 @@ namespace iFramework;
 
 public class UIMgr : IUIMgr
 {
-    private IUIMgrProvider _provider;
+    // 不需要判断null
+    private IUIMgrProvider? _provider;
 
     public void SetProvider(IUIMgrProvider provider)
     {
         _provider = provider;
     }
 
-    public async Task<bool> IsUIShown(string uiName)
+    public async Task<bool> IsUIShown(string uiName, CancellationToken ct = default)
     {
-        return await _provider?.IsUIShown(uiName);
+        return await _provider.IsUIShown(uiName, ct);
     }
 
-    public async Task ShowUI(string uiName)
+    public async Task<bool> ShowUI(string uiName, CancellationToken ct = default)
     {
-        if (await IsUIShown(uiName))
-            return;
-
-        await _provider?.ShowUI(uiName);
+        return await _provider.ShowUI(uiName, ct);
     }
 
-    public async Task CloseUI(string uiName)
+    public async Task<bool> CloseUI(string uiName, CancellationToken ct = default)
     {
-        if (!await IsUIShown(uiName))
-            return;
+        if (!await IsUIShown(uiName, ct))
+            return true;
 
-        await _provider?.CloseUI(uiName);
+        return await _provider.CloseUI(uiName, ct);
+    }
+
+    public void Dispose()
+    {
     }
 }

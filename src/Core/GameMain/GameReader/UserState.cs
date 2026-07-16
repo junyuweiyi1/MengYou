@@ -1,7 +1,7 @@
 /// <summary>
 /// 玩家状态快照：Reader 每次读取的结果聚合体。
 /// </summary>
-public sealed class UserSnapshot
+public sealed class UserStateSnapshot
 {
     public long ID { get; private set; }
     public string 名字 { get; private set; }

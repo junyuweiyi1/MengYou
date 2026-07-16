@@ -51,7 +51,7 @@ public sealed class BagPanelReader
             var countRegion = _locator.LocateRegion($"{key}.Count");
             var count = countRegion != null ? (_vision.ReadNumber(countRegion.Value) ?? 1) : 1;
 
-            items.Add(new BagItemSnapshot { Name = name, Count = count, SlotIndex = i });
+            items.Add(new BagItemSnapshot { BagType = BagType.道具, BagIndex = 1, Name = name, Count = count, SlotIndex = i });
         }
         return new BagSnapshot { Items = items };
     }
@@ -65,7 +65,7 @@ public sealed class BagPanelReader
         {
             for (var dx = -1; dx <= 1; dx++)
             {
-                var argb = _vision.GetPixel(new Point2D(cx + dx, cy + dy));
+                var argb = _vision.GetPixel(new Vector2(cx + dx, cy + dy));
                 if (!IsBackgroundColor(argb)) return true;
             }
         }

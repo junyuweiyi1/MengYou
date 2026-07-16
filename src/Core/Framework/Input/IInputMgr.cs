@@ -13,20 +13,6 @@ public enum MouseButton
     Middle,
 }
 
-/// <summary>键盘修饰键。命名 KeyModifiers 以避免与 WPF 的 ModifierKeys 冲突。</summary>
-[Flags]
-public enum KeyModifiers
-{
-    /// <summary>无。</summary>
-    None = 0,
-    /// <summary>Ctrl。</summary>
-    Ctrl = 1,
-    /// <summary>Shift。</summary>
-    Shift = 2,
-    /// <summary>Alt。</summary>
-    Alt = 4,
-}
-
 /// <summary>操作模式：前台或后台。</summary>
 public enum InputMode
 {
@@ -34,6 +20,8 @@ public enum InputMode
     Foreground,
     /// <summary>后台模式：使用 PostMessage 静默投递。</summary>
     Background,
+    /// <summary>驱动级模式：使用 Interception 内核驱动模拟真实硬件设备输入。</summary>
+    Driver,
 }
 
 /// <summary>
@@ -45,7 +33,7 @@ public interface IInputMgr
     /// <summary>当前操作模式。</summary>
     InputMode Mode { get; }
 
-    void Initialize(IUIMgr windowMgr);
+    void Initialize(IWindowMgr windowMgr);
 
     /// <summary>点击屏幕坐标（客户端坐标系）。</summary>
     Task ClickAsync(Vector2 point, MouseButton button = MouseButton.Left, CancellationToken ct = default);
@@ -56,9 +44,14 @@ public interface IInputMgr
     /// <summary>拖拽。</summary>
     Task DragAsync(Vector2 from, Vector2 to, CancellationToken ct = default);
 
-    /// <summary>按下并释放某个键。</summary>
-    Task SendKeyAsync(int virtualKeyCode, KeyModifiers modifiers = KeyModifiers.None, CancellationToken ct = default);
+    /// <summary>
+    /// 按下并释放一个或多个键（组合键），并支持取消。
+    /// 多个键按传入顺序依次按下，再按相反顺序释放，例如 SendKeyAsync(ct, KeyCode.Alt, KeyCode.E) 表示 Alt+E。
+    /// </summary>
+    Task SendKeyAsync(CancellationToken ct, params KeyCode[] keys);
 
     /// <summary>输入一段文本。</summary>
     Task InputTextAsync(string text, CancellationToken ct = default);
+
+    void Dispose();
 }

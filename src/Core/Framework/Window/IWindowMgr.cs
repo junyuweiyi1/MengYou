@@ -3,7 +3,7 @@ namespace iFramework;
 /// <summary>
 /// 游戏窗口
 /// </summary>
-public interface IWindowMgr
+public interface IWindowMgr : IDisposable
 {
     IntPtr HWnd { get; }
     bool IsWindowForground { get; }

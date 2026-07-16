@@ -1,3 +1,6 @@
+using System.IO;
+using System.Text.Json;
+
 namespace iFramework;
 
 /// <summary>
@@ -7,10 +10,10 @@ namespace iFramework;
 public sealed class UIElementLocateMgr : IUIElementLocateMgr
 {
     /// <summary>元素→坐标映射。</summary>
-    private Dictionary<string, Vector2> _points;
+    private Dictionary<string, Vector2> _points = new(StringComparer.OrdinalIgnoreCase);
 
     /// <summary>元素→区域映射。</summary>
-    private Dictionary<string, Rect> _regions;
+    private Dictionary<string, Rect> _regions = new(StringComparer.OrdinalIgnoreCase);
 
 
     public void Initialize(string path)
@@ -25,7 +28,7 @@ public sealed class UIElementLocateMgr : IUIElementLocateMgr
             foreach (var kv in pts.EnumerateObject())
             {
                 var arr = kv.Value;
-                points[kv.Name] = new Point2D(arr[0].GetInt32(), arr[1].GetInt32());
+                points[kv.Name] = new Vector2(arr[0].GetInt32(), arr[1].GetInt32());
             }
         }
         if (doc.RootElement.TryGetProperty("regions", out var rgs))
@@ -48,4 +51,8 @@ public sealed class UIElementLocateMgr : IUIElementLocateMgr
     /// <inheritdoc/>
     public Rect? LocateRegion(string elementKey)
         => _regions.TryGetValue(elementKey, out var r) ? r : null;
+
+    public void Dispose()
+    {
+    }
 }

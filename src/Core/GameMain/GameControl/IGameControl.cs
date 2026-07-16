@@ -5,5 +5,9 @@
 public interface IGameControl
 {
     /// <summary>使用背包道具。</summary>
-    void UseBagItem(BagType bagType, int bagIndex, int slotIndex, int useCount);
+    Task<bool> UseBagItem(BagType bagType, int bagIndex, int slotIndex, int useCount, CancellationToken ct = default);
+
+    Task ShowUI(string uiName, CancellationToken ct = default);
+
+    Task CloseUI(string uiName, CancellationToken ct = default);
 }

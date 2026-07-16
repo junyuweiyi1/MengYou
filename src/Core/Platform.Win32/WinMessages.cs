@@ -3,6 +3,9 @@
 /// </summary>
 public static class WinMessages
 {
+    /// <summary>虚拟键：Alt。</summary>
+    public const ushort VK_MENU = 0x12;
+
     /// <summary>鼠标左键按下。</summary>
     public const uint WM_LBUTTONDOWN = 0x0201;
     /// <summary>鼠标左键抬起。</summary>
@@ -35,8 +38,13 @@ public static class WinMessages
 
     /// <summary>SendInput 键盘：按键抬起。</summary>
     public const uint KEYEVENTF_KEYUP = 0x0002;
-    /// <summary>SendInput 键盘：扫描码模式。</summary>
+    /// <summary>SendInput 键盘：扫描码模式（不再走 VirtualKey，模拟真实硬件按键上报）。</summary>
     public const uint KEYEVENTF_SCANCODE = 0x0008;
+    /// <summary>SendInput 键盘：扩展键（如右 Ctrl/Alt、方向键、Insert/Delete/Home/End/PageUp/PageDown 等）。</summary>
+    public const uint KEYEVENTF_EXTENDEDKEY = 0x0001;
+
+    /// <summary>MapVirtualKey：VK 转扫描码。</summary>
+    public const uint MAPVK_VK_TO_VSC = 0x00;
 
     /// <summary>将鼠标坐标打包为 lParam（低字=x，高字=y）。</summary>
     public static IntPtr MakeLParam(int x, int y) => (IntPtr)((y << 16) | (x & 0xFFFF));

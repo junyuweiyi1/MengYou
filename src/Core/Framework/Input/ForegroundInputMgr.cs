@@ -1,4 +1,5 @@
-using Core.GameMain.Game.UI;
+﻿using Core.GameMain.Game.UI;
+using System.Runtime.InteropServices;
 
 namespace iFramework;
 
@@ -55,25 +56,27 @@ public sealed class ForegroundInputMgr : IInputMgr
         {
             var x = from.X + (to.X - from.X) * i / steps;
             var y = from.Y + (to.Y - from.Y) * i / steps;
-            MoveCursorAbsolute(ClientToScreen(new Point2D(x, y)));
+            MoveCursorAbsolute(ClientToScreen(new Vector2(x, y)));
             await Task.Delay(10, ct);
         }
         SendMouseFlag(WinMessages.MOUSEEVENTF_LEFTUP);
     }
 
     /// <inheritdoc/>
-    public Task SendKeyAsync(int virtualKeyCode, KeyModifiers modifiers = KeyModifiers.None, CancellationToken ct = default)
+    public Task SendKeyAsync(CancellationToken ct, params KeyCode[] keys)
     {
         EnsureForeground();
-        // 修饰键按下
-        if ((modifiers & KeyModifiers.Ctrl) != 0) SendKeyEvent(0x11, false);
-        if ((modifiers & KeyModifiers.Shift) != 0) SendKeyEvent(0x10, false);
-        if ((modifiers & KeyModifiers.Alt) != 0) SendKeyEvent(0x12, false);
-        SendKeyEvent((ushort)virtualKeyCode, false);
-        SendKeyEvent((ushort)virtualKeyCode, true);
-        if ((modifiers & KeyModifiers.Alt) != 0) SendKeyEvent(0x12, true);
-        if ((modifiers & KeyModifiers.Shift) != 0) SendKeyEvent(0x10, true);
-        if ((modifiers & KeyModifiers.Ctrl) != 0) SendKeyEvent(0x11, true);
+        if (keys == null || keys.Length == 0)
+            return Task.CompletedTask;
+
+        // 按传入顺序依次按下
+        foreach (var key in keys)
+            SendKeyEvent((ushort)key, false);
+
+        // 按相反顺序依次释放
+        for (var i = keys.Length - 1; i >= 0; i--)
+            SendKeyEvent((ushort)keys[i], true);
+
         return Task.CompletedTask;
     }
 
@@ -106,7 +109,7 @@ public sealed class ForegroundInputMgr : IInputMgr
     {
         var pt = new User32.Point { X = p.X, Y = p.Y };
         User32.ClientToScreen(_windowMgr.HWnd, ref pt);
-        return new Point2D(pt.X, pt.Y);
+        return new Vector2(pt.X, pt.Y);
     }
 
     /// <summary>移动光标到绝对屏幕坐标（SendInput 的 ABSOLUTE 需 0~65535）。</summary>
@@ -128,7 +131,7 @@ public sealed class ForegroundInputMgr : IInputMgr
                 }
             }
         };
-        User32.SendInput(1, new[] { input }, System.Runtime.InteropServices.Marshal.SizeOf<User32.INPUT>());
+        User32.SendInput(1, new[] { input }, Marshal.SizeOf<User32.INPUT>());
     }
 
     /// <summary>发送一次鼠标按键标志。</summary>
@@ -142,14 +145,23 @@ public sealed class ForegroundInputMgr : IInputMgr
                 Mouse = new User32.MOUSEINPUT { Flags = flag }
             }
         };
-        User32.SendInput(1, new[] { input }, System.Runtime.InteropServices.Marshal.SizeOf<User32.INPUT>());
+        User32.SendInput(1, new[] { input }, Marshal.SizeOf<User32.INPUT>());
     }
 
-    /// <summary>发送键盘事件。</summary>
-    /// <param name="vk">虚拟键码。</param>
+    /// <summary>
+    /// 发送键盘事件：使用扫描码（Scan Code）而非虚拟键码模式，即附加 KEYEVENTF_SCANCODE 标志。
+    /// 部分游戏（如梦幻西游）对纯 VirtualKey 模式的 SendInput 有过滤/忽略，
+    /// 只信任带扫描码、更接近真实硬件上报的输入事件，因此改为扫描码 + 硬件模拟方式发送。
+    /// </summary>
+    /// <param name="vk">虚拟键码（仅用于计算扫描码，实际发送时不再依赖它）。</param>
     /// <param name="keyUp">true=抬起，false=按下。</param>
     private static void SendKeyEvent(ushort vk, bool keyUp)
     {
+        var scanCode = (ushort)User32.MapVirtualKey(vk, WinMessages.MAPVK_VK_TO_VSC);
+        var flags = WinMessages.KEYEVENTF_SCANCODE;
+        if (keyUp) flags |= WinMessages.KEYEVENTF_KEYUP;
+        if (((KeyCode)vk).IsExtendedKey()) flags |= WinMessages.KEYEVENTF_EXTENDEDKEY;
+
         var input = new User32.INPUT
         {
             Type = User32.INPUT_KEYBOARD,
@@ -157,12 +169,16 @@ public sealed class ForegroundInputMgr : IInputMgr
             {
                 Keyboard = new User32.KEYBDINPUT
                 {
-                    VirtualKey = vk,
-                    ScanCode = (ushort)User32.MapVirtualKey(vk, 0),
-                    Flags = keyUp ? WinMessages.KEYEVENTF_KEYUP : 0,
+                    VirtualKey = 0,
+                    ScanCode = scanCode,
+                    Flags = flags,
                 }
             }
         };
-        User32.SendInput(1, new[] { input }, System.Runtime.InteropServices.Marshal.SizeOf<User32.INPUT>());
+        User32.SendInput(1, new[] { input }, Marshal.SizeOf<User32.INPUT>());
+    }
+
+    public void Dispose()
+    {
     }
 }

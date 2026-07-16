@@ -1,3 +1,5 @@
+using iFramework;
+
 /// <summary>
 /// 后端类型：切换识别 + 操作实现。
 /// </summary>

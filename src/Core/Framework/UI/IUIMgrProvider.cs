@@ -3,9 +3,9 @@ namespace iFramework;
 
 public interface IUIMgrProvider
 {
-    Task<bool> IsUIShown(string uiName);
+    Task<bool> IsUIShown(string uiName, CancellationToken ct = default);
 
-    Task ShowUI(string uiName);
+    Task<bool> ShowUI(string uiName, CancellationToken ct = default);
 
-    Task CloseUI(string uiName);
+    Task<bool> CloseUI(string uiName, CancellationToken ct = default);
 }

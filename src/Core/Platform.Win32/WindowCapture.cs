@@ -1,6 +1,5 @@
 using System.Drawing;
 using System.Drawing.Imaging;
-using MengYou.Platform.Win32.Native;
 
 /// <summary>
 /// 窗口截图工具：优先使用 PrintWindow（可截被遮挡的窗口），失败时回落 BitBlt。

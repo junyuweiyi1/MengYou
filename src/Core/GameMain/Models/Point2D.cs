@@ -1,3 +1,5 @@
+namespace iFramework;
+
 /// <summary>
 /// 二维整型坐标点：屏幕像素点或地图格子坐标皆可使用。
 /// </summary>
@@ -16,6 +18,8 @@ public struct Vector2
 
 
     public static readonly Vector2 Zero = new(0, 0);
+
+    public static implicit operator Vector2((int X, int Y) value) => new(value.X, value.Y);
 
     public override string ToString() => $"({X},{Y})";
 }

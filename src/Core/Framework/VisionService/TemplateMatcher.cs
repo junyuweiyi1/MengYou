@@ -1,3 +1,7 @@
+using System.IO;
+using OpenCvSharp;
+using OpenCvSharp.Extensions;
+
 namespace iFramework;
 
 /// <summary>
@@ -41,7 +45,7 @@ public sealed class TemplateMatcher
         Cv2.MatchTemplate(src, tmpl, result, TemplateMatchModes.CCoeffNormed);
         Cv2.MinMaxLoc(result, out _, out var maxVal, out _, out var maxLoc);
         if (maxVal < threshold) return null;
-        return new Point2D(maxLoc.X + tmpl.Width / 2, maxLoc.Y + tmpl.Height / 2);
+        return new Vector2(maxLoc.X + tmpl.Width / 2, maxLoc.Y + tmpl.Height / 2);
     }
 
     /// <summary>查找模板全部出现位置。</summary>
@@ -61,7 +65,7 @@ public sealed class TemplateMatcher
             {
                 if (result.At<float>(y, x) >= threshold)
                 {
-                    points.Add(new Point2D(x + w / 2, y + h / 2));
+                    points.Add(new Vector2(x + w / 2, y + h / 2));
                     // 抑制半个模板范围内的点
                     Cv2.Rectangle(result, new OpenCvSharp.Rect(x - w / 2, y - h / 2, w, h), new Scalar(0), thickness: -1);
                 }

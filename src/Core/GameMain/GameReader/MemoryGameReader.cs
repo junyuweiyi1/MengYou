@@ -13,8 +13,11 @@ public sealed class MemoryGameReader : IGameReader
     }
 
     /// <inheritdoc/>
-    public UserSnapshot GetUserSnapshot() => throw new NotImplementedException("待实现：内存偏移读取。");
+    public Task<bool> IsUIShown(string uiName, CancellationToken ct = default) => Task.FromResult(false);
 
     /// <inheritdoc/>
-    public BagSnapshot GetBagSnapshot() => throw new NotImplementedException();
+    public Task<UserStateSnapshot> GetUserSnapshot() => throw new NotImplementedException("待实现：内存偏移读取。");
+
+    /// <inheritdoc/>
+    public Task<BagSnapshot> GetBagSnapshot() => throw new NotImplementedException();
 }

@@ -20,9 +20,8 @@ public sealed class SessionManager
     private readonly SemaphoreSlim _foregroundLock = new(1, 1);
 
     /// <summary>构造。</summary>
-    public SessionManager(IServiceProvider rootProvider)
+    public SessionManager()
     {
-        _rootProvider = rootProvider;
         _logger = new Logger(GetType().Name);
     }
 
@@ -32,7 +31,7 @@ public sealed class SessionManager
     /// <summary>创建并注册一个新的 Session。</summary>
     public IGameSession Create(SessionData config)
     {
-        var session = new GameSession(config, _rootProvider);
+        var session = new GameSession(config);
         _sessions[session.SessionId] = session;
         _logger.LogFormat("SessionManager: 已挂载 {0}", session.DisplayName);
         return session;

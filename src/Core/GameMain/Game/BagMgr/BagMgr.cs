@@ -20,7 +20,7 @@ public sealed class BagMgr
         {
             var bagItem = new BagItem()
             {
-                BagType = itemSnapshot.Type,
+                BagType = itemSnapshot.BagType,
                 Name = itemSnapshot.Name,
                 Count = itemSnapshot.Count,
                 BagIndex = itemSnapshot.BagIndex,
@@ -34,10 +34,10 @@ public sealed class BagMgr
     {
         foreach (var item in _items)
         {
-            if (item.BagType == bagType && item.Name = itemName)
+            if (item.BagType == bagType && string.Equals(item.Name, itemName, StringComparison.OrdinalIgnoreCase))
                 return item;
         }
-        return null;
+        return null!;
     }
 
     /// <summary>

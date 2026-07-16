@@ -8,8 +8,12 @@ namespace iFramework;
 public interface IUIElementLocateMgr
 {
     /// <summary>定位元素中心点。</summary>
-    Models.Point2D? Locate(string elementKey);
+    Vector2? Locate(string elementKey);
 
     /// <summary>定位元素矩形区域。</summary>
-    Models.Rect? LocateRegion(string elementKey);
+    Rect? LocateRegion(string elementKey);
+
+    void Initialize(string path);
+
+    void Dispose();
 }
