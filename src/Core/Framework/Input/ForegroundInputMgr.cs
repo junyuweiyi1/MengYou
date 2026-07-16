@@ -9,12 +9,12 @@ namespace iFramework;
 public sealed class ForegroundInputMgr : IInputMgr
 {
     /// <summary>目标窗口句柄（用于坐标转换与前台切换）。</summary>
-    private IUIMgr _windowMgr;
+    private IWindowMgr _windowMgr;
 
     /// <inheritdoc/>
     public InputMode Mode => InputMode.Foreground;
 
-    public void Initialize(IUIMgr windowMgr)
+    public void Initialize(IWindowMgr windowMgr)
     {
         _windowMgr = windowMgr;
     }

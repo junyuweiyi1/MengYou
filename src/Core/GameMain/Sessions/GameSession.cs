@@ -38,8 +38,6 @@ public sealed class GameSession : IGameSession
     /// <inheritdoc/>
     public SessionState State { get; private set; } = SessionState.Idle;
 
-    /// <inheritdoc/>
-    public IServiceProvider Services => _scope.ServiceProvider;
 
     /// <inheritdoc/>
     public Task StartAsync(CancellationToken ct = default)

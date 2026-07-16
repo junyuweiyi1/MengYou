@@ -4,6 +4,7 @@
 /// </summary>
 public interface IGameReader
 {
+    Task<bool> IsUIShown();
     /// <summary>读取玩家状态快照。</summary>
     Task<UserSnapshot> GetUserSnapshot();
 

@@ -11,7 +11,7 @@ public sealed class BagMgr
         _game = game;
     }
 
-    public async void RefreshData()
+    public async Task RefreshData()
     {
         _items.Clear();
 
@@ -47,7 +47,7 @@ public sealed class BagMgr
     {
         if (string.IsNullOrEmpty(itemName)) return false;
 
-        var item = GetItem(itemName);
+        var item = GetItem(BagType.道具, itemName);
         if (item == null || item.Count == 0) return false;
 
         return await _game.GameControl.UseBagItem(BagType.道具, item.BagIndex, item.SlotIndex, useCount);

@@ -10,24 +10,24 @@ public class UIMgr : IUIMgr
         _provider = provider;
     }
 
-    public async bool IsUIShown(string uiName)
+    public async Task<bool> IsUIShown(string uiName)
     {
-        return _provider?.IsUIShown(uiName);
+        return await _provider?.IsUIShown(uiName);
     }
 
-    public async void ShowUI(string uiName)
+    public async Task ShowUI(string uiName)
     {
         if (await IsUIShown(uiName))
             return;
 
-        _provider?.ShowUI(uiName);
+        await _provider?.ShowUI(uiName);
     }
 
-    public async void CloseUI(string uiName)
+    public async Task CloseUI(string uiName)
     {
         if (!await IsUIShown(uiName))
             return;
 
-        _provider?.CloseUI(uiName);
+        await _provider?.CloseUI(uiName);
     }
 }

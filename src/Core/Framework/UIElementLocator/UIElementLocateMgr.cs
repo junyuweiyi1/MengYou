@@ -7,10 +7,10 @@ namespace iFramework;
 public sealed class UIElementLocateMgr : IUIElementLocateMgr
 {
     /// <summary>元素→坐标映射。</summary>
-    private readonly Dictionary<string, Vector2> _points;
+    private Dictionary<string, Vector2> _points;
 
     /// <summary>元素→区域映射。</summary>
-    private readonly Dictionary<string, Rect> _regions;
+    private Dictionary<string, Rect> _regions;
 
 
     public void Initialize(string path)

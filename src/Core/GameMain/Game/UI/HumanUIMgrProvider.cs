@@ -10,17 +10,17 @@ public class HumanUIMgrProvider: IUIMgrProvider
         _game = game;
     }
 
-    public async bool IsUIShown(string uiName)
+    public async Task<bool> IsUIShown(string uiName)
     {
         return await _game.GameReader.IsUIShown(uiName);
     }
 
-    public async void ShowUI(string uiName)
+    public async Task ShowUI(string uiName)
     {
         await _game.GameControl.ShowUI(uiName);
     }
 
-    public async void CloseUI(string uiName)
+    public async Task CloseUI(string uiName)
     {
         await _game.GameControl.CloseUI(uiName);
     }

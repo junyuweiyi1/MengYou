@@ -1,5 +1,4 @@
-﻿using Core.Framework.UI;
-using iFramework;
+﻿using iFramework;
 
 /// <summary>
 /// 游戏对象：单个游戏窗口对应一个 Game，聚合背包/状态读取等业务组件。
