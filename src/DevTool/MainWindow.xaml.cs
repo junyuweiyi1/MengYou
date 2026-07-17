@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using iFramework;
 using MengYou.DevTool.Services;
+using GameInputMode = iFramework.InputMode;
 // 用别名避免 System.Drawing.Rectangle 与 System.Windows.Shapes.Rectangle 冲突
 using DrawingRect = System.Drawing.Rectangle;
 using ShapeRect = System.Windows.Shapes.Rectangle;
@@ -101,8 +102,11 @@ public partial class MainWindow : Window
         var dir = new DirectoryInfo(devToolBaseDir);
         while (dir != null)
         {
-            var coreCandidate = Path.Combine(dir.FullName, "src", "Core", "Config");
+            var coreCandidate = Path.Combine(dir.FullName, "src", "Core", "Game", "Config");
             if (Directory.Exists(coreCandidate)) return coreCandidate;
+
+            var legacyCoreCandidate = Path.Combine(dir.FullName, "src", "Core", "Config");
+            if (Directory.Exists(legacyCoreCandidate)) return legacyCoreCandidate;
 
             var localCandidate = Path.Combine(dir.FullName, "Config");
             if (Directory.Exists(localCandidate) && File.Exists(Path.Combine(localCandidate, "UILayout.json")))
@@ -143,17 +147,17 @@ public partial class MainWindow : Window
         {
             _game?.Dispose();
 
-            var inputMode = iFramework.InputMode.Foreground;
+            var inputMode = GameInputMode.Foreground;
             if (DriverModeCheck.IsChecked == true)
             {
-                inputMode = iFramework.InputMode.Driver;
+                inputMode = GameInputMode.Driver;
             }
 
             _game = new Game(gw.Handle, inputMode);
-            _game.WindowMgr.ForgroundWindow();
+            _game.FW.WindowMgr.ForgroundWindow();
             UpdateWindowDebugInfo(gw.Handle);
 
-            if (inputMode == iFramework.InputMode.Driver && _game.InputMgr is DriverInputMgr driverInputMgr)
+            if (inputMode == GameInputMode.Driver && _game.FW.InputMgr is DriverInputMgr driverInputMgr)
             {
                 var diag = driverInputMgr.GetDiagnostics();
                 UpdateDriverStatusText(diag);
@@ -296,11 +300,11 @@ public partial class MainWindow : Window
     private async void OnOpenBag(object sender, RoutedEventArgs e)
     {
         if (!EnsureGameAttached()) return;
-        _game.WindowMgr.ForgroundWindow();
+        _game!.FW.WindowMgr.ForgroundWindow();
 
         try
         {
-            await _game!.UIMgr.ShowUI("道具行囊");
+            await _game.FW.UIMgr.ShowUI("道具行囊");
             SetStatus("已发送打开背包指令");
         }
         catch (Exception ex)
@@ -315,7 +319,7 @@ public partial class MainWindow : Window
 
         try
         {
-            await _game!.UIMgr.CloseUI("道具行囊");
+            await _game!.FW.UIMgr.CloseUI("道具行囊");
             SetStatus("已发送关闭背包指令");
         }
         catch (Exception ex)
@@ -342,7 +346,7 @@ public partial class MainWindow : Window
 
         try
         {
-            var ok = await _game!.GameControl.UseBagItem(BagType.道具, 1, slotIndex, useCount);
+            var ok = await _game!.Logic.GameControl.UseBagItem(BagType.道具, 1, slotIndex, useCount);
             SetStatus(ok ? $"已尝试使用背包格子 {slotIndex}" : $"使用背包格子 {slotIndex} 失败");
         }
         catch (Exception ex)
@@ -355,7 +359,7 @@ public partial class MainWindow : Window
     {
         if (_game != null)
         {
-            _game.WindowMgr.ForgroundWindow();
+            _game.FW.WindowMgr.ForgroundWindow();
             return true;
         }
 
@@ -510,7 +514,7 @@ public partial class MainWindow : Window
     private void OnCanvasMouseMove(object sender, System.Windows.Input.MouseEventArgs e)
     {
         var pt = e.GetPosition(OverlayCanvas);
-        MousePosText.Text = $"Mouse: ({(int)pt.X}, {(int)pt.Y})";
+        MousePosText.Text = $"Mouse Vector2: new Vector2({(int)pt.X}, {(int)pt.Y})";
         if (_dragStart == null || _dragRect == null) return;
         var x = Math.Min(_dragStart.Value.X, pt.X);
         var y = Math.Min(_dragStart.Value.Y, pt.Y);
@@ -539,12 +543,22 @@ public partial class MainWindow : Window
             _currentSelection = new Int32Rect(x, y, 1, 1);
             SelectionInfoText.Text = $"点: ({x}, {y})";
             TypePoint.IsChecked = true;
+            SelectionInfoText.Text = $"Vector2: new Vector2({x}, {y})";
         }
         else
         {
             _currentSelection = new Int32Rect(x, y, w, h);
             SelectionInfoText.Text = $"区域: X={x} Y={y} W={w} H={h}";
             TypeRegion.IsChecked = true;
+            var right = x + w;
+            var bottom = y + h;
+            var centerX = x + w / 2;
+            var centerY = y + h / 2;
+            SelectionInfoText.Text =
+                $"Rect: new Rect({x}, {y}, {w}, {h}){Environment.NewLine}" +
+                $"TopLeft: new Vector2({x}, {y}){Environment.NewLine}" +
+                $"BottomRight: new Vector2({right}, {bottom}){Environment.NewLine}" +
+                $"Center: new Vector2({centerX}, {centerY})";
         }
     }
 

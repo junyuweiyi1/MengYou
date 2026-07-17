@@ -5,6 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
+    <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,10 +13,30 @@
     <PackageReference Include="OpenCvSharp4" Version="4.8.0.20230708" />
     <PackageReference Include="OpenCvSharp4.runtime.win" Version="4.8.0.20230708" />
     <PackageReference Include="OpenCvSharp4.Extensions" Version="4.8.0.20230708" />
+    <PackageReference Include="PaddleOCRSharp" Version="6.2.0" />
+    <PackageReference Include="Paddle.Runtime.win_x64" Version="3.3.0.1" />
   </ItemGroup>
 
   <ItemGroup>
     <Using Include="System.Drawing" />
+    <Using Include="iFramework" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Tests\**\*.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Game\Config\*.*" CopyToOutputDirectory="PreserveNewest"
+          Link="Config\%(Filename)%(Extension)" />
+    <None Update="Game\Config\Combat\*.*" CopyToOutputDirectory="PreserveNewest"
+          Link="Config\Combat\%(Filename)%(Extension)" />
+    <None Update="Game\Config\Quests\*.*" CopyToOutputDirectory="PreserveNewest"
+          Link="Config\Quests\%(Filename)%(Extension)" />
+    <None Update="Game\Config\Templates\*.*" CopyToOutputDirectory="PreserveNewest"
+          Link="Config\Templates\%(Filename)%(Extension)" />
+    <None Update="Game\Config\Templates\Digits\*.*" CopyToOutputDirectory="PreserveNewest"
+          Link="Config\Templates\Digits\%(Filename)%(Extension)" />
   </ItemGroup>
 
 </Project>
