@@ -103,10 +103,7 @@
           "OpenCvSharp4.runtime.win": "4.8.0.20230708"
         },
         "runtime": {
-          "Core.dll": {
-            "assemblyVersion": "1.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "Core.dll": {}
         }
       }
     }

@@ -10,16 +10,3 @@ F:\UnityProjects\MengYou\src\Core\obj\Debug\net7.0-windows\Core.dll
 F:\UnityProjects\MengYou\src\Core\obj\Debug\net7.0-windows\refint\Core.dll
 F:\UnityProjects\MengYou\src\Core\obj\Debug\net7.0-windows\Core.pdb
 F:\UnityProjects\MengYou\src\Core\obj\Debug\net7.0-windows\ref\Core.dll
-C:\Users\Administrator\Desktop\梦游\src\Core\bin\Debug\net7.0-windows\Core.deps.json
-C:\Users\Administrator\Desktop\梦游\src\Core\bin\Debug\net7.0-windows\Core.dll
-C:\Users\Administrator\Desktop\梦游\src\Core\bin\Debug\net7.0-windows\Core.pdb
-C:\Users\Administrator\Desktop\梦游\src\Core\obj\Debug\net7.0-windows\Core.csproj.AssemblyReference.cache
-C:\Users\Administrator\Desktop\梦游\src\Core\obj\Debug\net7.0-windows\Core.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Administrator\Desktop\梦游\src\Core\obj\Debug\net7.0-windows\Core.AssemblyInfoInputs.cache
-C:\Users\Administrator\Desktop\梦游\src\Core\obj\Debug\net7.0-windows\Core.AssemblyInfo.cs
-C:\Users\Administrator\Desktop\梦游\src\Core\obj\Debug\net7.0-windows\Core.csproj.CoreCompileInputs.cache
-C:\Users\Administrator\Desktop\梦游\src\Core\obj\Debug\net7.0-windows\Core.sourcelink.json
-C:\Users\Administrator\Desktop\梦游\src\Core\obj\Debug\net7.0-windows\Core.dll
-C:\Users\Administrator\Desktop\梦游\src\Core\obj\Debug\net7.0-windows\refint\Core.dll
-C:\Users\Administrator\Desktop\梦游\src\Core\obj\Debug\net7.0-windows\Core.pdb
-C:\Users\Administrator\Desktop\梦游\src\Core\obj\Debug\net7.0-windows\ref\Core.dll

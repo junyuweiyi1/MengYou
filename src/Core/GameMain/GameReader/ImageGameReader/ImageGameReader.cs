@@ -1,5 +1,4 @@
 using iFramework;
-using MengYou.UI;
 
 /// <summary>
 /// 基于图像识别的 GameReader 实现。
@@ -22,53 +21,54 @@ public sealed class ImageGameReader : IGameReader
     /// <summary>背包读取。</summary>
     private readonly BagPanelReader _bag;
 
-    private readonly IUiRegistry _uiRegistry;
-
-    public ImageGameReader(
-        IVisionServiceMgr vision,
-        IUIElementLocateMgr locator,
-        IUiRegistry uiRegistry)
+    public ImageGameReader(Game game)
     {
-        _vision = vision;
-        _locator = locator;
-        _uiRegistry = uiRegistry;
+        _vision = game.VisionServiceMgr;
+        _locator = game.UIElementLocateMgr;
 
+        _bagUIShown = new BagPannelUIShownReader(_vision, _locator);
+        _playerStateUIShown = new PlayerStatePannelUIShownReader(_vision, _locator);
         _bag = new BagPanelReader(_vision, _locator);
     }
 
+    private readonly BagPannelUIShownReader _bagUIShown;
+    private readonly PlayerStatePannelUIShownReader _playerStateUIShown;
     public async Task<bool> IsUIShown(string uiName, CancellationToken ct = default)
     {
-        var observation = await _uiRegistry
-            .ObserveAsync(GameUiIds.FromName(uiName), ct)
-            .ConfigureAwait(false);
-        return observation.Visibility == UiVisibility.Visible;
+        switch (uiName)
+        {
+            case "道具行囊":
+                return await _bagUIShown.IsUIShown();
+            case "人物状态":
+                return await _playerStateUIShown.IsUIShown();
+            default:
+                return false;
+        }
     }
 
     /// <inheritdoc/>
-    public Task<UserStateSnapshot> GetUserSnapshot(CancellationToken ct = default)
+    public async Task<UserStateSnapshot> GetUserSnapshot()
     {
-        ct.ThrowIfCancellationRequested();
         _vision.Refresh();
         var hp = _locator.LocateRegion("HpNumber") is { } hr ? _vision.ReadNumber(hr) ?? 0 : 0;
         var maxHp = _locator.LocateRegion("MaxHpNumber") is { } mhr ? _vision.ReadNumber(mhr) ?? 0 : 0;
         var mp = _locator.LocateRegion("MpNumber") is { } mr ? _vision.ReadNumber(mr) ?? 0 : 0;
         var maxMp = _locator.LocateRegion("MaxMpNumber") is { } mmr ? _vision.ReadNumber(mmr) ?? 0 : 0;
         var lv = _locator.LocateRegion("Level") is { } lr ? _vision.ReadNumber(lr) ?? 0 : 0;
-        return Task.FromResult(new UserStateSnapshot
+        return new UserStateSnapshot
         {
             Hp = hp,
             MaxHp = maxHp,
             Mp = mp,
             MaxMp = maxMp,
             Level = lv,
-        });
+        };
     }
 
     /// <inheritdoc/>
-    public Task<BagSnapshot> GetBagSnapshot(CancellationToken ct = default)
+    public async Task<BagSnapshot> GetBagSnapshot()
     {
-        ct.ThrowIfCancellationRequested();
         _vision.Refresh();
-        return Task.FromResult(_bag.ReadAll());
+        return await Task.FromResult(_bag.ReadAll());
     }
 }

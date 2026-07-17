@@ -19,10 +19,10 @@ namespace iFramework;
 public sealed class DriverInputMgr : IInputMgr
 {
     /// <summary>目标窗口句柄（用于坐标转换与前台切换）。</summary>
-    private IWindowMgr _windowMgr = null!;
+    private IWindowMgr _windowMgr;
 
-    private KeyboardHook _keyboardHook = null!;
-    private MouseHook _mouseHook = null!;
+    private KeyboardHook _keyboardHook;
+    private MouseHook _mouseHook;
 
     /// <inheritdoc/>
     public InputMode Mode => InputMode.Driver;

@@ -1,48 +1,35 @@
 ﻿
 using iFramework;
-using MengYou.UI;
 
 public class HumanUIMgrProvider: IUIMgrProvider
 {
-    private readonly IUiRegistry _uiRegistry;
-    private readonly IGameControl _control;
-    private readonly IVisionServiceMgr _vision;
+    private Game _game;
 
-    public HumanUIMgrProvider(
-        IUiRegistry uiRegistry,
-        IGameControl control,
-        IVisionServiceMgr vision)
+    public HumanUIMgrProvider(Game game)
     {
-        _uiRegistry = uiRegistry;
-        _control = control;
-        _vision = vision;
+        _game = game;
     }
 
     public async Task<bool> IsUIShown(string uiName, CancellationToken ct = default)
     {
-        var observation = await ObserveAsync(uiName, ct).ConfigureAwait(false);
-        return observation.Visibility == UiVisibility.Visible;
+        return await _game.GameReader.IsUIShown(uiName, ct);
     }
 
     public async Task<bool> ShowUI(string uiName, CancellationToken ct = default)
     {
-        _vision.Refresh();
-        var initial = await ObserveAsync(uiName, ct).ConfigureAwait(false);
-        if (initial.Visibility == UiVisibility.Visible)
+        _game.VisionServiceMgr.Refresh();
+        if (await IsUIShown(uiName, ct))
             return true;
-        if (initial.Visibility == UiVisibility.Unknown)
-            return false;
 
         for (var i = 0; i < 5; i++)
         {
-            await _control.ShowUI(uiName, ct);
+            await _game.GameControl.ShowUI(uiName);
 
             for (var j = 0; j < 5; j++)
             {
                 await Task.Delay(100, ct);
-                _vision.Refresh();
-                var observation = await ObserveAsync(uiName, ct).ConfigureAwait(false);
-                if (observation.Visibility == UiVisibility.Visible)
+                _game.VisionServiceMgr.Refresh();
+                if (await IsUIShown(uiName))
                     return true;
             }
         }
@@ -51,29 +38,22 @@ public class HumanUIMgrProvider: IUIMgrProvider
 
     public async Task<bool> CloseUI(string uiName, CancellationToken ct = default)
     {
-        _vision.Refresh();
-        var initial = await ObserveAsync(uiName, ct).ConfigureAwait(false);
-        if (initial.Visibility == UiVisibility.Hidden)
+        _game.VisionServiceMgr.Refresh();
+        if (!await IsUIShown(uiName, ct))
             return true;
-        if (initial.Visibility == UiVisibility.Unknown)
-            return false;
 
         for (var i = 0; i < 5; i++)
         {
-            await _control.CloseUI(uiName, ct);
+            await _game.GameControl.CloseUI(uiName);
 
             for (var j = 0; j < 5; j++)
             {
                 await Task.Delay(100, ct);
-                _vision.Refresh();
-                var observation = await ObserveAsync(uiName, ct).ConfigureAwait(false);
-                if (observation.Visibility == UiVisibility.Hidden)
+                _game.VisionServiceMgr.Refresh();
+                if (!await IsUIShown(uiName))
                     return true;
             }
         }
         return false;
     }
-
-    private Task<UiObservation> ObserveAsync(string uiName, CancellationToken ct)
-        => _uiRegistry.ObserveAsync(GameUiIds.FromName(uiName), ct);
 }

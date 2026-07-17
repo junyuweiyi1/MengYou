@@ -5,9 +5,6 @@ namespace iFramework;
 /// </summary>
 public interface IOcrEngine
 {
-    /// <summary>当前 OCR 实现是否具备实际识别能力。</summary>
-    bool IsAvailable { get; }
-
     /// <summary>识别整张位图内的文字。</summary>
     string Recognize(Bitmap image);
 
@@ -21,8 +18,6 @@ public interface IOcrEngine
 /// </summary>
 public sealed class NoopOcrEngine : IOcrEngine
 {
-    public bool IsAvailable => false;
-
     /// <inheritdoc/>
     public string Recognize(Bitmap image) => string.Empty;
 
