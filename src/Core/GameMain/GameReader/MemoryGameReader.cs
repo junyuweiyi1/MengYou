@@ -16,8 +16,8 @@ public sealed class MemoryGameReader : IGameReader
     public Task<bool> IsUIShown(string uiName, CancellationToken ct = default) => Task.FromResult(false);
 
     /// <inheritdoc/>
-    public Task<UserStateSnapshot> GetUserSnapshot() => throw new NotImplementedException("待实现：内存偏移读取。");
+    public Task<UserStateSnapshot> GetUserSnapshot(CancellationToken ct = default) => throw new NotImplementedException("待实现：内存偏移读取。");
 
     /// <inheritdoc/>
-    public Task<BagSnapshot> GetBagSnapshot() => throw new NotImplementedException();
+    public Task<BagSnapshot> GetBagSnapshot(CancellationToken ct = default) => throw new NotImplementedException();
 }

@@ -39,6 +39,15 @@ public interface IGameSession : IDisposable
     /// <summary>游戏对象。</summary>
     Game Game { get; }
 
+    /// <summary>会话动作执行器。</summary>
+    MengYou.Runtime.IGameActionExecutor Actions { get; }
+
+    /// <summary>当前游戏状态与订阅入口。</summary>
+    MengYou.Runtime.IGameStateStore StateStore { get; }
+
+    /// <summary>会话内后台功能的启动、停止与状态查询入口。</summary>
+    MengYou.Runtime.IGameFeatureSupervisor Features { get; }
+
     /// <summary>启动会话。</summary>
     Task StartAsync(CancellationToken ct = default);
 

@@ -4,8 +4,11 @@ namespace iFramework;
 /// 视觉门面：模板匹配 + OCR + 像素查询统一入口。
 /// 仅在图像识别后端使用；内存后端可不实现。
 /// </summary>
-public interface IVisionServiceMgr
+public interface IVisionServiceMgr : IDisposable
 {
+    /// <summary>当前视觉后端是否具备文字 OCR 能力。</summary>
+    bool CanReadText { get; }
+
     /// <summary>在当前画面查找模板；未找到返回 null。</summary>
     Vector2? FindTemplate(string templateKey, double threshold = 0.85);
 

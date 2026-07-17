@@ -1,21 +1,27 @@
 using iFramework;
-using System.Xml.Linq;
 
 /// <summary>
 /// 背包使用器
 /// </summary>
 public sealed class BagPanelControl
 {
-    private readonly Game _game;
+    private readonly IUIMgr _uiMgr;
+    private readonly IInputMgr _input;
+    private readonly IUIElementLocateMgr _locator;
 
-    public BagPanelControl(Game game)
+    public BagPanelControl(
+        IUIMgr uiMgr,
+        IInputMgr input,
+        IUIElementLocateMgr locator)
     {
-        _game = game;
+        _uiMgr = uiMgr;
+        _input = input;
+        _locator = locator;
     }
 
     public async Task<bool> UseItem(BagType bagType, int bagIndex, int slotIndex, int useCount, CancellationToken ct = default)
     {
-        var showUISuc = await _game.UIMgr.ShowUI("道具行囊", ct);
+        var showUISuc = await _uiMgr.ShowUI("道具行囊", ct);
         if (!showUISuc)
             return false;
 
@@ -23,17 +29,17 @@ public sealed class BagPanelControl
         if (!chooseItemBagTypeSuc)
             return false;
 
-        var region = _game.UIElementLocateMgr.LocateRegion($"BagSlot.{slotIndex}.Icon");
+        var region = _locator.LocateRegion($"BagSlot.{slotIndex}.Icon");
         if (region == null)
             return false;
 
         for (int i = 0; i < useCount; i++)
         {
-            await _game.InputMgr.ClickAsync(region.Value.Center, MouseButton.Right, ct);
+            await _input.ClickAsync(region.Value.Center, MouseButton.Right, ct);
             await Task.Delay(500, ct);
         }
 
-        await _game.UIMgr.CloseUI("道具行囊", ct);
+        await _uiMgr.CloseUI("道具行囊", ct);
 
         await Task.Delay(300, ct);
         return true;
@@ -42,11 +48,11 @@ public sealed class BagPanelControl
     public async Task<bool> ChooseBagTypeTab(BagType bagType, CancellationToken ct = default)
     {
         var key = bagType == BagType.道具 ? "BagTab.Item" : "BagTab.Package";
-        var itemBagBtnRegion = _game.UIElementLocateMgr.LocateRegion(key);
+        var itemBagBtnRegion = _locator.LocateRegion(key);
         if (itemBagBtnRegion == null)
             return bagType == BagType.道具;
 
-        await _game.InputMgr.ClickAsync(itemBagBtnRegion.Value.Center, MouseButton.Left, ct);
+        await _input.ClickAsync(itemBagBtnRegion.Value.Center, MouseButton.Left, ct);
         await Task.Delay(1000, ct);
         return true;
     }

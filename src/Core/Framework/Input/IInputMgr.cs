@@ -18,7 +18,7 @@ public enum InputMode
 {
     /// <summary>前台模式：使用 SendInput 抢占用户输入。</summary>
     Foreground,
-    /// <summary>后台模式：使用 PostMessage 静默投递。</summary>
+    /// <summary>后台模式预留：计划使用 PostMessage 静默投递，当前版本尚未实现。</summary>
     Background,
     /// <summary>驱动级模式：使用 Interception 内核驱动模拟真实硬件设备输入。</summary>
     Driver,

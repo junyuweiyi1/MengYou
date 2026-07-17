@@ -28,7 +28,7 @@ public sealed class SessionData
     public string DisplayName { get; init; } = "Session";
 
     /// <summary>输入模式。</summary>
-    public InputMode InputMode { get; init; } = InputMode.Background;
+    public InputMode InputMode { get; init; } = InputMode.Foreground;
 
     /// <summary>后端类型。</summary>
     public BackendType Backend { get; init; } = BackendType.ImageAndSimulated;

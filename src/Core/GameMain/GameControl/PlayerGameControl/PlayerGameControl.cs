@@ -1,19 +1,22 @@
 using iFramework;
+using MengYou.UI;
 
 /// <summary>
 /// 正常玩家 游戏操作
 /// </summary>
 public class PlayerGameControl: IGameControl
 {
-    private readonly Game _game;
     private readonly BagPanelControl _bag;
-    private readonly BagPanelShowUIControl _bagShowUI;
+    private readonly IUiRegistry _uiRegistry;
 
-    public PlayerGameControl(Game game)
+    public PlayerGameControl(
+        IUIMgr uiMgr,
+        IInputMgr input,
+        IUIElementLocateMgr locator,
+        IUiRegistry uiRegistry)
     {
-        _game = game;
-        _bag = new BagPanelControl(game);
-        _bagShowUI = new BagPanelShowUIControl(game.InputMgr);
+        _bag = new BagPanelControl(uiMgr, input, locator);
+        _uiRegistry = uiRegistry;
     }
 
     /// <summary>使用背包道具。</summary>
@@ -27,14 +30,9 @@ public class PlayerGameControl: IGameControl
     /// </summary>
     public async Task ShowUI(string uiName, CancellationToken ct = default)
     {
-        switch (uiName)
-        {
-            case "道具行囊":
-                await _bagShowUI.ShowUI(ct);
-                break;
-            default:
-                break;
-        }
+        await _uiRegistry
+            .OpenAsync(GameUiIds.FromName(uiName), ct)
+            .ConfigureAwait(false);
     }
 
     /// <summary>
@@ -42,13 +40,8 @@ public class PlayerGameControl: IGameControl
     /// </summary>
     public async Task CloseUI(string uiName, CancellationToken ct = default)
     {
-        switch (uiName)
-        {
-            case "道具行囊":
-                await _bagShowUI.CloseUI(ct);
-                break;
-            default:
-                break;
-        }
+        await _uiRegistry
+            .CloseAsync(GameUiIds.FromName(uiName), ct)
+            .ConfigureAwait(false);
     }
 }

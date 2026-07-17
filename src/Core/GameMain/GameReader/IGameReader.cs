@@ -6,8 +6,8 @@ public interface IGameReader
 {
     Task<bool> IsUIShown(string uiName, CancellationToken ct = default);
     /// <summary>读取玩家状态快照。</summary>
-    Task<UserStateSnapshot> GetUserSnapshot();
+    Task<UserStateSnapshot> GetUserSnapshot(CancellationToken ct = default);
 
     /// <summary>读取背包快照。</summary>
-    Task<BagSnapshot> GetBagSnapshot();
+    Task<BagSnapshot> GetBagSnapshot(CancellationToken ct = default);
 }
